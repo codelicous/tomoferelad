@@ -1,4 +1,4 @@
-import {GameState} from "./app/consts.ts";
+import {GameState} from './app/consts';
 declare global {
     export interface Player {
         id: string;

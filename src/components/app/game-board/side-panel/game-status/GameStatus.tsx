@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo} from 'react';
-import {useTimer} from "../../../../../contexts/timer.context";
-import ProgressBar from "./ProgressBar/ProgressBar.tsx";
-import {TURN_TIME} from "../../../consts.ts";
+import {useTimer} from '../../../../../contexts/timer.context';
+import ProgressBar from './ProgressBar/ProgressBar.tsx';
+import {TURN_TIME} from '../../../consts';
 
 export type GameStatusProps = ChildProps & { activePlayer: Player| null, nextPlayer: Player| null, updatePlayerTurn: () => void };
 
@@ -30,5 +30,5 @@ export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} 
             <ProgressBar percentage={percentage} color={activePlayer?.color}/>
             <div>Next player: {nextPlayer?.name}</div>
         </div>
-    )
+    );
 }

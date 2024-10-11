@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+
 type TurnManagerProps = ChildProps & {};
 function TurnManager({className}: TurnManagerProps): React.JSX.Element {
     return <div className={className}>

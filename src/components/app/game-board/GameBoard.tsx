@@ -37,7 +37,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
 
             };
         });
-    }, [setGame])
+    }, [setGame]);
 
     // useEffect to initialize the game
     useEffect(() => {
@@ -59,7 +59,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
                         content={game.content}
                         updatePlayerTurn={updatePlayerTurn}>
             </StoryBoard>
-    </div>)
+    </div>);
 }
 
 export default GameBoard;

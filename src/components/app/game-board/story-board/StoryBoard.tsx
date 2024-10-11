@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from 'react';
 
 export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 
@@ -15,7 +15,7 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
 
     const submitText = () => {
         if (!activeText) {
-            return
+            return;
         }
         const aggregatedText = `${submitted} ${activeText.trim()}`;
         setActiveText('');
@@ -23,10 +23,10 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
         inputRef?.current?.focus();
         updatePlayerTurn();
 
-    }
+    };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !inputDisabled) {
             e.preventDefault();
             submitText();
         }
@@ -34,15 +34,14 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
 
     const inputDisabled = useMemo(() => {
         const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
-        return !threeWordsPattern.test(activeText)
-    }, [activeText])
+        return !threeWordsPattern.test(activeText);
+    }, [activeText]);
 
     return <div className={className}>
         <div className='flex flex-col h-3/4 w-full items-center'>
             <div className='text-container w-full border-2 h-3/4 flex flex-1 text-xl p-5'>
                 <div>{submitted}</div>
                 <input
-                    tabIndex={0}
                     ref={inputRef}
                     autoFocus={true}
                     type='text'
@@ -52,7 +51,9 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
                     className='ml-2 bg-transparent h-7 w-fit text-xl'
                 ></input>
             </div>
-            <button disabled={inputDisabled} tabIndex={1} onClick={submitText} className='w-56 mt-6 isabled:bg-gray-400
+            <button disabled={inputDisabled}
+                    onClick={submitText}
+                    className='w-56 mt-6 disabled:bg-gray-400
              disabled:cursor-not-allowed disabled:opacity-50'>Submit my Words</button>
         </div>
     </div>;
