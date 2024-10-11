@@ -26,9 +26,9 @@ export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} 
 
     return (
         <div className='flex flex-col p-5 border-2'>
-            <div className='font-bold'>{activePlayer?.name}'s Turn</div>
+            <div className='font-bold'><span className={`text-${activePlayer?.color}`}>{activePlayer?.name}'s</span> Turn</div>
             <ProgressBar percentage={percentage} color={activePlayer?.color}/>
-            <div>Next player: {nextPlayer?.name}</div>
+            <div>Next player: <span className={`text-${nextPlayer?.color}`}>{nextPlayer?.name}</span></div>
         </div>
     );
 }

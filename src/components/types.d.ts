@@ -1,9 +1,9 @@
-import {GameState} from './app/consts';
+import {GameState, PlayerColor} from './app/consts';
 declare global {
     export interface Player {
         id: string;
         name: string;
-        color: string;
+        color: PlayerColor;
     }
 
     export interface Game {

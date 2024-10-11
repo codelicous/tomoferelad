@@ -6,7 +6,12 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  --player-red: #FF5733;    /* Vibrant orange-red */
+  --player-blue: #33A1FF;   /* Bright sky blue */
+  --player-green: #8DFF33;  /* Vivid lime green */
+  --player-pink: #FF33B8;   /* Bold pink */
+  --player-yellow: #FFD633; /* Warm golden yellow */
+  --player-teal: #33FFDD;   /* Soft teal */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

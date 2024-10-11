@@ -10,7 +10,9 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     const [game, setGame] = useState<Game>({
         content: '',
         openerCategory: 'random',
-        players: [{id: 'tom', name: 'Tom', color: 'bg-yellow-400'}, {id: 'ofer', name: 'Ofer', color: 'bg-blue-600'}], // TBD: Color mechanism
+        players: [{id: 'tom', name: 'Tom', color: 'playerRed'},
+                  {id: 'ofer', name: 'Ofer', color: 'playerPink'}
+        ], // TBD: Color mechanism
         activePlayer: null,
         nextPlayer: null,
         state: GameState.InGame,
@@ -54,9 +56,11 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
                        game={game}
                        updatePlayerTurn={updatePlayerTurn}>
             </SidePanel>
-            <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col p-6
+            <StoryBoard className='flex basis-2/3 border-2
+            max-2xl board-container flex-col p-6
              relative justify-center align-middle items-center'
                         content={game.content}
+                        activePlayer={game?.activePlayer}
                         updatePlayerTurn={updatePlayerTurn}>
             </StoryBoard>
     </div>);

@@ -4,4 +4,6 @@ export enum GameState {
     Ended,
 }
 
-export const TURN_TIME = 10_000; // 10 seconds
+export const TURN_TIME = 20_000; // 20 seconds
+
+export type PlayerColor = 'playerRed' | 'playerGreen' | 'playerBlue' | 'playerPink' | 'playerTeal';
