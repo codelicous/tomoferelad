@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import {PlayerColorBank} from "./src/components/app/consts";
+import {PlayerColorBank} from './src/components/app/consts';
 
 export default {
     content: [
@@ -27,5 +27,5 @@ export default {
     theme: {
     },
     plugins: [],
-}
+};
 
