@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo} from 'react';
 import {useTimer} from '@contexts/timer.context.tsx';
-import ProgressBar from '@components/ProgressBar/ProgressBar.tsx';
+import ProgressBar from '@components/ProgressBar/ProgressBar';
 import {TURN_TIME} from '../../../app/consts.ts';
 
 export type GameStatusProps = ChildProps & { activePlayer: Player| null, nextPlayer: Player| null, updatePlayerTurn: () => void };
