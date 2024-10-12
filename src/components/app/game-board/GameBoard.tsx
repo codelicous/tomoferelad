@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SidePanel from './side-panel/SidePanel.tsx';
 import StoryBoard from './story-board/StoryBoard.tsx';
-import {GameState} from '../consts.ts';
+import {GameState, PlayerColorBank} from '../consts.ts';
 import {useCallback, useEffect, useState} from 'react';
 import openings from '../../../assets/openings.json';
 
@@ -10,9 +10,16 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     const [game, setGame] = useState<Game>({
         content: '',
         openerCategory: 'random',
-        players: [{id: 'tom', name: 'Tom', color: 'playerRed'},
-                  {id: 'ofer', name: 'Ofer', color: 'playerPink'}
-        ], // TBD: Color mechanism
+        players: [{
+                  id: 'tom',
+                  name: 'Tom',
+                  color: PlayerColorBank.player1
+                    },
+                  {
+                      id: 'ofer',
+                      name: 'Ofer',
+                      color: PlayerColorBank.player2
+                  }],
         activePlayer: null,
         nextPlayer: null,
         state: GameState.InGame,

@@ -1,41 +1,30 @@
 /** @type {import('tailwindcss').Config} */
+import {PlayerColorBank} from "./src/components/app/consts";
+
 export default {
     content: [
         './index.html',
         './src/**/*.{js,ts,jsx,tsx}',
     ],
     safelist: [
-        'text-playerRed',
-        'text-playerGreen',
-        'text-playerBlue',
-        'text-playerPink',
-        'text-playerYellow',
-        'text-playerTeal',
-        'border-b-playerRed',
-        'border-b-playerBlue',
-        'border-b-playerGreen',
-        'border-b-playerPink',
-        'border-b-playerYellow',
-        'border-b-playerTeal',
-        'bg-playerRed',
-        'bg-playerBlue',
-        'bg-playerGreen',
-        'bg-playerPink',
-        'bg-playerYellow',
-        'bg-playerTeal',
+        `text-${PlayerColorBank.player1}`,
+        `text-${PlayerColorBank.player2}`,
+        `text-${PlayerColorBank.player3}`,
+        `text-${PlayerColorBank.player4}`,
+        `text-${PlayerColorBank.player5}`,
+        `border-b-${PlayerColorBank.player1}`,
+        `border-b-${PlayerColorBank.player2}`,
+        `border-b-${PlayerColorBank.player3}`,
+        `border-b-${PlayerColorBank.player4}`,
+        `border-b-${PlayerColorBank.player5}`,
+        `bg-${PlayerColorBank.player1}`,
+        `bg-${PlayerColorBank.player2}`,
+        `bg-p${PlayerColorBank.player3}`,
+        `bg-${PlayerColorBank.player4}`,
+        `bg-${PlayerColorBank.player5}`,
+
     ],
     theme: {
-        extend: {
-            colors: {
-                playerRed: 'var(--player-red)',
-                playerBlue: 'var(--player-blue)',
-                playerGreen: 'var(--player-green)',
-                playerPink: 'var(--player-pink)',
-                playerYellow: 'var(--player-yellow)',
-                playerTeal: 'var(--player-teal)',
-            },
-        }
-
     },
     plugins: [],
 }
