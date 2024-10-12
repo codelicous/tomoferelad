@@ -1,7 +1,7 @@
 import * as React from 'react';
-import SidePanel from './side-panel/SidePanel.tsx';
-import StoryBoard from './story-board/StoryBoard.tsx';
-import {GameState, PlayerColorBank} from '../app/consts.ts';
+import SidePanel from './side-panel/SidePanel';
+import StoryBoard from './story-board/StoryBoard';
+import {GameState, PlayerColorBank} from '../app/consts';
 import {useCallback, useEffect, useState} from 'react';
 import openings from '@assets/openings.json';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {formatTime, useTimer} from "../../../../../contexts/timer.context.tsx";
-import {GameState} from "../../../consts.ts";
+import {formatTime, useTimer} from "@contexts/timer.context";
+import {GameState} from "@components/app/consts.ts";
 
 type TurnManagerProps = ChildProps & {gameState: GameState};
 function TurnManager({className, gameState}: TurnManagerProps): React.JSX.Element {
