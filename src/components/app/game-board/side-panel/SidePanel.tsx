@@ -2,7 +2,7 @@ import React from 'react';
 import TurnManager from './turn manager/TurnManager.tsx';
 import PlayersList from './players-list/PlayersList.tsx';
 import GameStatus from './game-status/GameStatus';
-import {TimerProvider} from '../../../../contexts/timer.context';
+import {TimerProvider} from '@contexts/timer.context.tsx';
 import {TURN_TIME} from '../../consts';
 
 export type SidePanelProps = ChildProps & { game: Game, updatePlayerTurn: () => void };

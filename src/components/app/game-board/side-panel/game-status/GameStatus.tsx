@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo} from 'react';
-import {useTimer} from '../../../../../contexts/timer.context';
+import {useTimer} from '@contexts/timer.context.tsx';
 import ProgressBar from './ProgressBar/ProgressBar.tsx';
 import {TURN_TIME} from '../../../consts';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import GameBoard from '../components/app/game-board/GameBoard';
+import GameBoard from '@components/app/game-board/GameBoard';
 import {Welcome} from './Welcome/Welcome';
 
 export const Views = (): React.JSX.Element => (
