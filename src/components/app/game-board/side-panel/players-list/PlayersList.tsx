@@ -11,7 +11,7 @@ export default function PlayersList({players, activePlayer, className}: PlayerLi
 
                     return (
                         <li key={player.id} className="flex flex-col">
-                            <div className={ isActive(player.id) ? 'font-bold' : ''}>{player.name}</div>
+                            <div className={`text-${player?.color} ${isActive(player.id) ? 'font-bold' : ''}`}>{player.name}</div>
                         </li>
                     );
                 })}

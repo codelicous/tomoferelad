@@ -1,9 +1,9 @@
-import {GameState} from './app/consts';
+import {GameState, PlayerColorBank} from './app/consts';
 declare global {
     export interface Player {
         id: string;
         name: string;
-        color: string;
+        color: PlayerColor;
     }
 
     export interface Game {
@@ -22,4 +22,5 @@ declare global {
     export interface ChildProps {
         className?: string;
     }
+    export type PlayerColor = typeof PlayerColorBank[keyof typeof PlayerColorBank];
 }
