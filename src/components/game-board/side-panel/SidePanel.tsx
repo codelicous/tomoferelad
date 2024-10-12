@@ -3,7 +3,7 @@ import TurnManager from './turn manager/TurnManager';
 import PlayersList from './players-list/PlayersList';
 import GameStatus from './game-status/GameStatus';
 import {TimerProvider} from '@contexts/timer.context';
-import {TURN_TIME} from '../../app/consts.ts';
+import {TURN_TIME} from '../../app/consts';
 
 export type SidePanelProps = ChildProps & { game: Game, updatePlayerTurn: () => void };
 
