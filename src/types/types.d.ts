@@ -1,4 +1,4 @@
-import {GameState, PlayerColorBank} from './app/consts';
+import {GameState, PlayerColorBank} from '@components/app/consts.ts';
 declare global {
     export interface Player {
         id: string;
@@ -16,8 +16,8 @@ declare global {
         players: Player[];
         activePlayer: Player| null;
         nextPlayer: Player| null;
-        totalGameTime: number;
-        currentPlayerTime?: number
+        currentPlayerTime: number
+        totalTurns: number;
     }
     export interface ChildProps {
         className?: string;

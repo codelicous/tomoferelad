@@ -4,7 +4,8 @@ export enum GameState {
     Ended,
 }
 
-export const TURN_TIME = 40_000;
+export const TURN_TIME = 10_000;
+export const MAX_TURNS_PER_PLAYER = 4;
 
 export const PlayerColorBank = {
     player1: 'amber-400',
