@@ -26,14 +26,18 @@ export default function GameStatus({
     }, [activePlayer, startCountdown]);
 
     useEffect(() => {
-        if (isTimerEnd && totalTurns !== 0) {
+        if (isTimerEnd) {
             updatePlayerTurn();
-        } else if (totalTurns <= 0) {
+        }
+
+    }, [isTimerEnd, updatePlayerTurn]);
+
+    useEffect(() => {
+        if (totalTurns <= 0) {
             stopCountdown();
             endGame();
         }
-
-    }, [endGame, stopCountdown, isTimerEnd, updatePlayerTurn, totalTurns]);
+    }, [totalTurns, endGame, stopCountdown]);
 
     const percentage = useMemo(() => (timer / currentPlayerTime) * 100, [timer, currentPlayerTime]);
 
