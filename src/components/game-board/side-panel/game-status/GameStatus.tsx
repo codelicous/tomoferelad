@@ -1,18 +1,20 @@
 import React, {useEffect, useMemo} from 'react';
 import {useTimer} from '@contexts/timer.context';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
-import { Player } from '@types/Player';
 
-export interface GameStatusProps extends ChildProps {
-    activePlayer: Player| null,
-    nextPlayer: Player| null,
-    totalTurns: number,
-    turnTime: number,
+export interface GameStatusProps extends ChildProps, Game {
     updatePlayerTurn: () => void,
     endGame: () => void
 }
 
-export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn, turnTime, totalTurns, endGame} : GameStatusProps): React.JSX.Element {
+export default function GameStatus({
+    activePlayer,
+    nextPlayer,
+    updatePlayerTurn,
+    currentPlayerTime,
+    totalTurns,
+    endGame
+} : GameStatusProps): React.JSX.Element {
     const {timer, startCountdown, stopCountdown} = useTimer();
 
     const isTimerEnd  = useMemo(() => timer === 0, [timer]);
@@ -33,7 +35,7 @@ export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn, 
 
     }, [endGame, stopCountdown, isTimerEnd, updatePlayerTurn]);
 
-    const percentage = useMemo(() => (timer / turnTime) * 100, [timer]);
+    const percentage = useMemo(() => (timer / currentPlayerTime) * 100, [timer]);
 
     return (
         <div className='flex flex-col p-5 border-2'>

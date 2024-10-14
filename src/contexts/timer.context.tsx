@@ -22,11 +22,11 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
     const [timer, setTimer] = useState(initialTime);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const stopCountdown = ()=> {
+    const stopCountdown = useCallback(()=> {
         if(intervalRef.current){
             clearInterval(intervalRef.current);
         }
-    };
+    }, [intervalRef]);
 
     const startCountdown = useCallback(() => {
         stopCountdown();
