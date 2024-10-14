@@ -3,6 +3,7 @@ import React, {createContext, useContext, ReactNode, useCallback, useState, useM
 export interface TimerContextProps {
     timer: number;
     startCountdown: () => void;
+    stopCountdown: () => void;
 }
 
 const TimerContext = createContext<TimerContextProps | undefined>(undefined);
@@ -19,22 +20,22 @@ export type TimerProviderProps = { children: ReactNode; initialTime: number; }
 
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialTime }) => {
     const [timer, setTimer] = useState(initialTime);
-    const intervalRef = useRef<number | null>(null);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const destroyInterval = ()=> {
+    const stopCountdown = ()=> {
         if(intervalRef.current){
             clearInterval(intervalRef.current);
         }
     };
 
     const startCountdown = useCallback(() => {
-        destroyInterval();
+        stopCountdown();
         setTimer(initialTime);
         intervalRef.current = setInterval(() => {
                 setTimer(prevTimer => {
                     if (prevTimer <= 1) {
                         if (intervalRef.current) {
-                            destroyInterval();
+                            stopCountdown();
                             return 0;
                         }
                     }
@@ -42,10 +43,10 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
                 });
             }, 100);
 
-            return destroyInterval;
+            return stopCountdown;
     }, [initialTime]);
 
-    const value = useMemo(() => ({ timer, startCountdown }), [timer, startCountdown]);
+    const value = useMemo(() => ({ timer, startCountdown, stopCountdown }), [timer, startCountdown, stopCountdown]);
 
   return (
     <TimerContext.Provider value={value}>
