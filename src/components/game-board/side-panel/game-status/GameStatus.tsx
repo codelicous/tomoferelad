@@ -1,5 +1,5 @@
-import React, {useEffect, useMemo} from 'react';
-import {useTimer} from '@contexts/timer.context';
+import React, { useEffect, useMemo } from 'react';
+import { useTimer } from '@contexts/timer.context';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
 
 export interface GameStatusProps extends ChildProps, Game {
@@ -8,16 +8,16 @@ export interface GameStatusProps extends ChildProps, Game {
 }
 
 export default function GameStatus({
-    activePlayer,
-    nextPlayer,
-    updatePlayerTurn,
-    currentPlayerTime,
-    totalTurns,
-    endGame
-} : GameStatusProps): React.JSX.Element {
-    const {timer, startCountdown, stopCountdown} = useTimer();
+                                       activePlayer,
+                                       nextPlayer,
+                                       updatePlayerTurn,
+                                       currentPlayerTime,
+                                       totalTurns,
+                                       endGame
+                                   }: GameStatusProps): React.JSX.Element {
+    const { timer, startCountdown, stopCountdown } = useTimer();
 
-    const isTimerEnd  = useMemo(() => timer === 0, [timer]);
+    const isTimerEnd = useMemo(() => timer === 0, [timer]);
 
     useEffect(() => {
         if (activePlayer) {
@@ -33,16 +33,18 @@ export default function GameStatus({
             endGame();
         }
 
-    }, [endGame, stopCountdown, isTimerEnd, updatePlayerTurn]);
+    }, [endGame, stopCountdown, isTimerEnd, updatePlayerTurn, totalTurns]);
 
-    const percentage = useMemo(() => (timer / currentPlayerTime) * 100, [timer]);
+    const percentage = useMemo(() => (timer / currentPlayerTime) * 100, [timer, currentPlayerTime]);
 
     return (
         <div className='flex flex-col p-5 border-2'>
-            <div className='font-bold'><span className={`text-${activePlayer?.color}`}>{activePlayer?.name}'s</span> Turn</div>
-            <ProgressBar percentage={percentage} color={activePlayer?.color}/>
-            <div className='font-bold'>Turns left: {totalTurns}</div>
-            <div>Next player: <span className={`text-${nextPlayer?.color}`}>{nextPlayer?.name}</span></div>
+            <div className='font-bold'><span
+                className={ `text-${ activePlayer?.color }` }>{ activePlayer?.name }'s</span> Turn
+            </div>
+            <ProgressBar percentage={ percentage } color={ activePlayer?.color }/>
+            <div className='font-bold'>Turns left: { totalTurns }</div>
+            <div>Next player: <span className={ `text-${ nextPlayer?.color }` }>{ nextPlayer?.name }</span></div>
         </div>
     );
 }

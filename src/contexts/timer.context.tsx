@@ -44,7 +44,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
             }, 100);
 
             return stopCountdown;
-    }, [initialTime]);
+    }, [initialTime, stopCountdown]);
 
     const value = useMemo(() => ({ timer, startCountdown, stopCountdown }), [timer, startCountdown, stopCountdown]);
 
