@@ -14,4 +14,3 @@ export const PlayerColorBank = {
     player4:  'fuchsia-600',
     player5:  'violet-500',
 } as const;
-
