@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
-import {useTrigger} from '@contexts/trigger.context.tsx';
+import {useGame} from '@contexts/game.context.tsx';
 import {Dialog} from '@components/app/dialog/dialog.tsx';
 
 export type StartGameDialogProps = ChildProps & { startingPlayerName: string };
 export function StartGameDialog({ className, startingPlayerName }: StartGameDialogProps) {
-    const { isTriggered, setIsTriggered } = useTrigger();
+    const { isTriggered, setIsTriggered } = useGame();
 
         const dialogTrigger = useCallback(()=>{
           setIsTriggered(true);

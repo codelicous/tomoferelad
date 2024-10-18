@@ -11,5 +11,7 @@ export function Dialog({ className, isOpen, children}: DialogProps): ReactNode {
             dialogRef.current?.close(); }
         }, [isOpen]);
 
-    return <dialog ref={dialogRef} className={className}> {children}</dialog>;
+    return <dialog ref={dialogRef}
+                   className={`bg-gray-800 text-white text-2xl min-w-5 p-6 rounded-lg shadow-xl backdrop:bg-gray-900/50
+     ${className}` }> {children}</dialog>;
 }

@@ -11,7 +11,7 @@ import {
 import {useCallback, useEffect, useState} from 'react';
 import openings from '@assets/openings.json';
 import {StartGameDialog} from '@components/app/game-board/start-game-dialog/StartGameDialog';
-import {TriggerProvider} from '@contexts/trigger.context.tsx';
+import {GameProvider} from '@contexts/game.context.tsx';
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     const navigate = useNavigate();
@@ -85,7 +85,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     }, [showGameDialog, getOpener]);
 
     return (<div className= {className}>
-        <TriggerProvider>
+        <GameProvider>
         <SidePanel className='flex basis-1/3 flex-col justify-center'
                    game={game}
                    endGame={setEndGame}
@@ -99,9 +99,8 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
                     updatePlayerTurn={updatePlayerTurn}>
         </StoryBoard>
         <StartGameDialog
-            className='bg-gray-800 text-white text-2xl min-w-5 p-6 rounded-lg shadow-xl backdrop:bg-gray-900/50'
             startingPlayerName={game?.activePlayer?.name || ''}/>
-        </TriggerProvider>
+        </GameProvider>
     </div>);
 }
 
