@@ -100,8 +100,6 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         </StoryBoard>
         <StartGameDialog
             className='bg-gray-800 text-white text-2xl min-w-5 p-6 rounded-lg shadow-xl backdrop:bg-gray-900/50'
-            showGameOpen={showGameDialog}
-
             startingPlayerName={game?.activePlayer?.name || ''}/>
         </TriggerProvider>
     </div>);
