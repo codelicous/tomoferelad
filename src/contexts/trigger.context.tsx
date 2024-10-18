@@ -11,11 +11,10 @@ type TriggerProps = { children?: React.ReactNode };
 export const TriggerProvider: React.FC<TriggerProps> = ({ children }) => {
     const [isTriggered, setIsTriggered] = useState(false);
 
-
     return (<TriggerContext.Provider value={{isTriggered, setIsTriggered}}>
         {children}
-    </TriggerContext.Provider>)
-}
+    </TriggerContext.Provider>);
+};
 export const useTrigger = () => {
     const context = useContext(TriggerContext);
     if (!context) {

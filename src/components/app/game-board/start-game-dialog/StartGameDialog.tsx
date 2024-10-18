@@ -1,9 +1,8 @@
-import {Dispatch, SetStateAction, useCallback, useEffect, useRef} from 'react';
+import { useCallback, useEffect, useRef} from 'react';
 import {useTrigger} from '@contexts/trigger.context.tsx';
 
-export type StartGameDialogProps = ChildProps & { startGame: Dispatch<SetStateAction<boolean>>,
-    showGameOpen: boolean, startingPlayerName: string}
-export function StartGameDialog({ className, startingPlayerName,showGameOpen, startGame }: StartGameDialogProps) {
+export type StartGameDialogProps = ChildProps & { showGameOpen: boolean, startingPlayerName: string };
+export function StartGameDialog({ className, startingPlayerName,showGameOpen }: StartGameDialogProps) {
     const { setIsTriggered } = useTrigger();
     const dialogRef = useRef<HTMLDialogElement>(null);
     useEffect(() => {
@@ -13,8 +12,8 @@ export function StartGameDialog({ className, startingPlayerName,showGameOpen, st
     }, [showGameOpen]);
         const dialogTrigger = useCallback(()=>{
             dialogRef.current?.close();
-            setIsTriggered(true)
-        },[startGame]);
+            setIsTriggered(true);
+        },[setIsTriggered]);
 
     return <dialog ref={dialogRef} className={className}>
             <div>

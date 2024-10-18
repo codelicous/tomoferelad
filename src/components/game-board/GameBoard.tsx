@@ -13,7 +13,6 @@ import openings from '@assets/openings.json';
 import {StartGameDialog} from '@components/app/game-board/start-game-dialog/StartGameDialog';
 import {TriggerProvider} from '@contexts/trigger.context.tsx';
 
-
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     const navigate = useNavigate();
 
@@ -41,7 +40,6 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         totalTurns: players.length * MAX_TURNS_PER_PLAYER
     });
     const [showGameDialog, setShowGameDialog] = useState(true);
-    const [startGame, setStartGame] = useState<boolean>(false);
     const getOpener: (game: Game)=> string = useCallback((game:Game) => {
         const category = game.openerCategory || 'random';
         const selectedIndex = Math.floor(Math.random() * openings[category].length);
@@ -73,7 +71,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
 
             };
         });
-    }, [startGame]);
+    }, []);
 
     // useEffect to initialize the game
     useEffect(() => {
@@ -84,7 +82,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
             activePlayer: prevGame.players[0],
             nextPlayer: prevGame.players[1]
         }));
-    }, [showGameDialog]);
+    }, [showGameDialog, getOpener]);
 
     return (<div className= {className}>
         <TriggerProvider>
@@ -103,7 +101,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         <StartGameDialog
             className='bg-gray-800 text-white text-2xl min-w-5 p-6 rounded-lg shadow-xl backdrop:bg-gray-900/50'
             showGameOpen={showGameDialog}
-            startGame={setStartGame}
+
             startingPlayerName={game?.activePlayer?.name || ''}/>
         </TriggerProvider>
     </div>);
