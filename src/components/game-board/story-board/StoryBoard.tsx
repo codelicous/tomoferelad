@@ -9,32 +9,33 @@ export type StoryBoardProps = ChildProps &
     };
 
 export default function StoryBoard({className,  updatePlayerTurn,game}: StoryBoardProps): React.JSX.Element {
-    const [submitted] = useState<string>('');
+
     const [activeText, setActiveText] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
-    const { addEntry, addOpener, content} = useGame();
+    const { addEntry, addOpener, content, story} = useGame();
     document.onclick = () =>  inputRef && inputRef.current?.focus();
 
     useEffect(() => {
+        if(!story.opener) {
         const category = game.openerCategory || 'random';
         const selectedIndex = Math.floor(Math.random() * openings[category].length);
-
         addOpener(openings[category][selectedIndex]);
-    }, []);
+        }
+    }, [addOpener, game.openerCategory, story.opener]);
 
     const submitText = useCallback(() => {
         if (!activeText) {
             return;
         }
-        const aggregatedText = `${submitted} ${activeText.trim()}`;
+
         addEntry({
-            turn: 0, user: '', text: aggregatedText.trim()
+            turn: game.totalTurns, user: game.activePlayer?.name || '', text: activeText.trim()
         });
         inputRef?.current?.focus();
         setActiveText('');
         updatePlayerTurn();
 
-    }, [activeText]);
+    }, [activeText, addEntry,game?.activePlayer?.name, game.totalTurns, updatePlayerTurn]);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !inputDisabled) {

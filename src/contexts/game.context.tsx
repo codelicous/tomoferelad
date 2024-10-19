@@ -24,15 +24,17 @@ export const GameProvider: React.FC<GameProps> = ({ children }) => {
     const [content, setContent] = useState('');
     const addEntry = useCallback((storyEntry: StoryEntry) => {
         setStory({...story, entries: [...story.entries, storyEntry]});
-    }, [setStory, story]);
+    }, [story]);
+
     const addOpener  = useCallback((opener: string)=>{
         setStory({...story, opener});
-    },[setStory, story]);
+    },[story]);
 
     useEffect(() => {
         setContent(  `${story.opener} ${story.entries.reduce<string>((acc: string, currentValue: StoryEntry)=>
-         acc.concat(currentValue.text),'')}`)
-    }, [story, opener]);
+         acc.concat(currentValue.text),'')}`);
+    }, [story]);
+
     return (<GameContext.Provider value={
         {
           isTriggered,

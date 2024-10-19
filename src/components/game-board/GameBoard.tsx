@@ -60,11 +60,11 @@ function GameBoard({className}: ChildProps): React.JSX.Element {
             nextPlayer: prevGame.players[(nextPlayerIndex + 1) % prevGame.players.length],
 
         };
-    },[])
+    },[]);
     const updatePlayerTurn = useCallback(() => {
         setShowGameDialog(false);
         setGame(updatePlayerInsideGameObject);
-    }, []);
+    }, [updatePlayerInsideGameObject]);
 
     // useEffect to initialize the game
     useEffect(() => {
