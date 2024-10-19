@@ -1,11 +1,13 @@
 import React, {createContext, Dispatch, ReactNode, SetStateAction, useContext, useState} from 'react';
 import {PlayerColorBank} from '@components/app/consts';
 
+type GameConfig = Pick<Game, 'players' | 'openerCategory'>;
+
 type GameContextProps = {
     isTriggered: boolean;
     setIsTriggered: Dispatch<SetStateAction<boolean>>;
-    players: Game['players'];
-    setPlayers: Dispatch<SetStateAction<Game['players']>>;
+    config: GameConfig;
+    setConfig: Dispatch<SetStateAction<GameConfig>>;
 }
 
 const GameContext = createContext<GameContextProps| null>(null);
@@ -14,16 +16,19 @@ type GameProps = { children?: ReactNode };
 
 export const GameProvider: React.FC<GameProps> = ({ children }) => {
     const [isTriggered, setIsTriggered] = useState(false);
-    const [players, setPlayers] = useState<Game['players']>([
-        {id: 1, name: 'Tom', color: PlayerColorBank.player1},
-        {id: 2, name: 'Ofer', color: PlayerColorBank.player2}
-    ]);
+    const [config, setConfig] = useState<GameConfig>({
+        openerCategory: 'random',
+        players: [
+            {id: 1, name: 'Tom', color: PlayerColorBank.player1},
+            {id: 2, name: 'Ofer', color: PlayerColorBank.player2},
+        ]
+    });
 
     const value = {
         isTriggered,
         setIsTriggered,
-        players,
-        setPlayers
+        config,
+        setConfig
     };
 
     return (

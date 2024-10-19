@@ -12,13 +12,13 @@ import {StartGameDialog} from '@components/app/game-board/start-game-dialog/Star
 import { useGame } from '@contexts/game.context';
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
-    const { players } = useGame();
+    const { config : { players, openerCategory } } = useGame();
     const navigate = useNavigate();
 
     const [game, setGame] = useState<Game>({
         content: '',
-        openerCategory: 'random',
-        players: players,
+        openerCategory,
+        players,
         activePlayer: null,
         nextPlayer: null,
         state: GameState.InGame,
@@ -27,7 +27,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     });
     const [showGameDialog, setShowGameDialog] = useState(true);
     const getOpener: (game: Game)=> string = useCallback((game:Game) => {
-        const category = game.openerCategory || 'random';
+        const category = game.openerCategory;
         const selectedIndex = Math.floor(Math.random() * openings[category].length);
 
         return openings[category][selectedIndex];

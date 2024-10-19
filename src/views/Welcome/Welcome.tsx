@@ -2,11 +2,18 @@ import React, {useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useGame} from '@contexts/game.context';
 import {MAX_PLAYERS, PlayerColorBank} from '@components/app/consts';
+import openings from '@assets/openings.json';
+
+const cetegories = Object.keys(openings);
 
 export const Welcome = (): React.JSX.Element => {
     const navigate = useNavigate();
-    const { players, setPlayers } = useGame();
+    const { config: { players, openerCategory }, setConfig } = useGame();
     const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const onCategoryChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setConfig((prevState) => ({...prevState, openerCategory: event.target.value as Game['openerCategory']}));
+    }, [setConfig]);
 
     const onPlayClick = useCallback(() => {
         const isValid = players.every((player) => player.name.trim().length);
@@ -18,17 +25,26 @@ export const Welcome = (): React.JSX.Element => {
     const addPlayer = useCallback(() => {
         const value = inputRef.current?.value;
         if (value) {
-            setPlayers((prevState) => [...prevState, {
-                name: value,
-                id: prevState.length + 1,
-                color: PlayerColorBank.player3
-            }]);
+            setConfig((prevState) => ({
+                    ...prevState,
+                    players: [...prevState.players, { name: value, id: prevState.players.length + 1, color: PlayerColorBank.player3}]
+                })
+            );
         }
-    }, [setPlayers]);
+    }, [setConfig]);
 
     return (
         <div className="form-control max-w-xs mx-auto gap-4">
             <h2>Welcome to the game!</h2>
+            <label>
+                <p>Select a category</p>
+                {cetegories.map((category) => (
+                    <label key={category} className="label cursor-pointer">
+                        <span className="label-text">{category}</span>
+                        <input checked={openerCategory === category} onChange={onCategoryChange} type="radio" name="category" value={category} className="radio checked:bg-black-500"  />
+                    </label>
+                ))}
+            </label>
             <label className="input input-bordered flex items-center gap-2">
                 <input ref={inputRef} className="grow" placeholder="Name" type="text"/>
                 {players.length <= MAX_PLAYERS && <kbd className="kbd kbd-sm" onClick={addPlayer}>+</kbd>}
