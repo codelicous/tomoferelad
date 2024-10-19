@@ -24,7 +24,7 @@ export default function GameStatus({
         if (activePlayer && isTriggered ) {
             startCountdown();
         }
-    }, [activePlayer, startCountdown, isTriggered]);
+    }, [activePlayer]);
 
     useEffect(() => {
         if (isTimerEnd) {
