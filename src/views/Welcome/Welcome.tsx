@@ -4,7 +4,8 @@ import {useGame} from '@contexts/game.context';
 import {MAX_PLAYERS, PlayerColorBank} from '@components/app/consts';
 import openings from '@assets/openings.json';
 
-const cetegories = Object.keys(openings);
+const categories = Object.keys(openings);
+const playerColors = Object.values(PlayerColorBank);
 
 export const Welcome = (): React.JSX.Element => {
     const navigate = useNavigate();
@@ -27,9 +28,8 @@ export const Welcome = (): React.JSX.Element => {
         if (value) {
             setConfig((prevState) => ({
                     ...prevState,
-                    players: [...prevState.players, { name: value, id: prevState.players.length + 1, color: PlayerColorBank.player3}]
-                })
-            );
+                    players: [...prevState.players, { name: value, id: prevState.players.length + 1, color: playerColors[prevState.players.length + 1]}]
+            }));
         }
     }, [setConfig]);
 
@@ -38,7 +38,7 @@ export const Welcome = (): React.JSX.Element => {
             <h2>Welcome to the game!</h2>
             <label>
                 <p>Select a category</p>
-                {cetegories.map((category) => (
+                {categories.map((category) => (
                     <label key={category} className="label cursor-pointer">
                         <span className="label-text">{category}</span>
                         <input checked={openerCategory === category} onChange={onCategoryChange} type="radio" name="category" value={category} className="radio checked:bg-black-500"  />
